@@ -145,13 +145,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     }
 
 
-    /**
-     * @Author chengpunan
-     * @Description TODO 
-     * @Date 14:21 2019/6/19
-     * @Param [response, message, code]
-     * @return void
-     **/
+
     private void noAuth(HttpServletResponse response, String message, String code) {
         Result result = new Result();
         result.setData(null);

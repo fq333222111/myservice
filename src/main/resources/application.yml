@@ -1,0 +1,22 @@
+server:
+  port: 4466 #端口号
+  servlet:
+    context-path: /mymessage
+
+## 日志打印sql语句
+logging:
+  level:
+    com.product.fq.dao: DEBUG
+
+## 打包命令配置
+spring:
+  profiles:
+    active: @package.environment@
+
+
+
+
+
+
+
+

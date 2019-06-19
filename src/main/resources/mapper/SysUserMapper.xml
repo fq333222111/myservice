@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myservice.dao.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.myservice.model.SysUser" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PERSON_ID" property="personId" jdbcType="VARCHAR" />
+    <result column="MOBILE_PHONE" property="mobilePhone" jdbcType="VARCHAR" />
+    <result column="ROLE_ID" property="roleId" jdbcType="VARCHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="VAILD" property="vaild" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, ACCOUNT, PASSWORD, NAME, PERSON_ID, MOBILE_PHONE, ROLE_ID, CREATE_BY, CREATE_TIME, 
+    UPDATE_BY, UPDATE_TIME, VAILD
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_user
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.myservice.model.SysUser" >
+    insert into sys_user (GUID, ACCOUNT, PASSWORD, 
+      NAME, PERSON_ID, MOBILE_PHONE, 
+      ROLE_ID, CREATE_BY, CREATE_TIME, 
+      UPDATE_BY, UPDATE_TIME, VAILD
+      )
+    values (#{guid,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, 
+      #{roleId,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{vaild,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.myservice.model.SysUser" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="account != null" >
+        ACCOUNT,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="personId != null" >
+        PERSON_ID,
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE,
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="vaild != null" >
+        VAILD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null" >
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vaild != null" >
+        #{vaild,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.myservice.model.SysUser" >
+    update sys_user
+    <set >
+      <if test="account != null" >
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        PERSON_ID = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilePhone != null" >
+        MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vaild != null" >
+        VAILD = #{vaild,jdbcType=CHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.myservice.model.SysUser" >
+    update sys_user
+    set ACCOUNT = #{account,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      PERSON_ID = #{personId,jdbcType=VARCHAR},
+      MOBILE_PHONE = #{mobilePhone,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      VAILD = #{vaild,jdbcType=CHAR}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

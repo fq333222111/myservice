@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myservice.dao.ProjectsMapper" >
+  <resultMap id="BaseResultMap" type="com.myservice.model.Projects" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="RESUME_ID" property="resumeId" jdbcType="VARCHAR" />
+    <result column="PRO_NAME" property="proName" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="PRO_DESC" property="proDesc" jdbcType="VARCHAR" />
+    <result column="DUTY" property="duty" jdbcType="VARCHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, RESUME_ID, PRO_NAME, START_TIME, END_TIME, PRO_DESC, DUTY, CREATE_BY, CREATE_TIME, 
+    UPDATE_BY, UPDATE_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from projects
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from projects
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.myservice.model.Projects" >
+    insert into projects (GUID, RESUME_ID, PRO_NAME, 
+      START_TIME, END_TIME, PRO_DESC, 
+      DUTY, CREATE_BY, CREATE_TIME, 
+      UPDATE_BY, UPDATE_TIME)
+    values (#{guid,jdbcType=VARCHAR}, #{resumeId,jdbcType=VARCHAR}, #{proName,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{proDesc,jdbcType=VARCHAR}, 
+      #{duty,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.myservice.model.Projects" >
+    insert into projects
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="resumeId != null" >
+        RESUME_ID,
+      </if>
+      <if test="proName != null" >
+        PRO_NAME,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="proDesc != null" >
+        PRO_DESC,
+      </if>
+      <if test="duty != null" >
+        DUTY,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeId != null" >
+        #{resumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null" >
+        #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proDesc != null" >
+        #{proDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.myservice.model.Projects" >
+    update projects
+    <set >
+      <if test="resumeId != null" >
+        RESUME_ID = #{resumeId,jdbcType=VARCHAR},
+      </if>
+      <if test="proName != null" >
+        PRO_NAME = #{proName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proDesc != null" >
+        PRO_DESC = #{proDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        DUTY = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.myservice.model.Projects" >
+    update projects
+    set RESUME_ID = #{resumeId,jdbcType=VARCHAR},
+      PRO_NAME = #{proName,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      PRO_DESC = #{proDesc,jdbcType=VARCHAR},
+      DUTY = #{duty,jdbcType=VARCHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

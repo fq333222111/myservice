@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myservice.dao.SysDictionaryMapper" >
+  <resultMap id="BaseResultMap" type="com.myservice.model.SysDictionary" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="CODE" property="code" jdbcType="VARCHAR" />
+    <result column="VALUE" property="value" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="IS_HAS_CHIRD" property="isHasChird" jdbcType="CHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="VAILD" property="vaild" jdbcType="CHAR" />
+    <result column="DESC_CONTENT" property="descContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, NAME, CODE, VALUE, PARENT_ID, IS_HAS_CHIRD, CREATE_BY, CREATE_TIME, UPDATE_BY, 
+    UPDATE_TIME, VAILD, DESC_CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_dictionary
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_dictionary
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.myservice.model.SysDictionary" >
+    insert into sys_dictionary (GUID, NAME, CODE, 
+      VALUE, PARENT_ID, IS_HAS_CHIRD, 
+      CREATE_BY, CREATE_TIME, UPDATE_BY, 
+      UPDATE_TIME, VAILD, DESC_CONTENT
+      )
+    values (#{guid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{value,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{isHasChird,jdbcType=CHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{vaild,jdbcType=CHAR}, #{descContent,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.myservice.model.SysDictionary" >
+    insert into sys_dictionary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="code != null" >
+        CODE,
+      </if>
+      <if test="value != null" >
+        VALUE,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="isHasChird != null" >
+        IS_HAS_CHIRD,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="vaild != null" >
+        VAILD,
+      </if>
+      <if test="descContent != null" >
+        DESC_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="isHasChird != null" >
+        #{isHasChird,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vaild != null" >
+        #{vaild,jdbcType=CHAR},
+      </if>
+      <if test="descContent != null" >
+        #{descContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.myservice.model.SysDictionary" >
+    update sys_dictionary
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        CODE = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null" >
+        VALUE = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="isHasChird != null" >
+        IS_HAS_CHIRD = #{isHasChird,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vaild != null" >
+        VAILD = #{vaild,jdbcType=CHAR},
+      </if>
+      <if test="descContent != null" >
+        DESC_CONTENT = #{descContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.myservice.model.SysDictionary" >
+    update sys_dictionary
+    set NAME = #{name,jdbcType=VARCHAR},
+      CODE = #{code,jdbcType=VARCHAR},
+      VALUE = #{value,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      IS_HAS_CHIRD = #{isHasChird,jdbcType=CHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      VAILD = #{vaild,jdbcType=CHAR},
+      DESC_CONTENT = #{descContent,jdbcType=VARCHAR}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myservice.dao.ResumeMapper" >
+  <resultMap id="BaseResultMap" type="com.myservice.model.Resume" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="PERSON_ID" property="personId" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="JOB_STATUS" property="jobStatus" jdbcType="CHAR" />
+    <result column="JOB_ADDRESS" property="jobAddress" jdbcType="VARCHAR" />
+    <result column="JOB_TRADE" property="jobTrade" jdbcType="VARCHAR" />
+    <result column="SALARY" property="salary" jdbcType="INTEGER" />
+    <result column="JOB_NATURE" property="jobNature" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, PERSON_ID, EMAIL, JOB_STATUS, JOB_ADDRESS, JOB_TRADE, SALARY, JOB_NATURE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from resume
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from resume
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.myservice.model.Resume" >
+    insert into resume (GUID, PERSON_ID, EMAIL, 
+      JOB_STATUS, JOB_ADDRESS, JOB_TRADE, 
+      SALARY, JOB_NATURE)
+    values (#{guid,jdbcType=VARCHAR}, #{personId,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{jobStatus,jdbcType=CHAR}, #{jobAddress,jdbcType=VARCHAR}, #{jobTrade,jdbcType=VARCHAR}, 
+      #{salary,jdbcType=INTEGER}, #{jobNature,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.myservice.model.Resume" >
+    insert into resume
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="personId != null" >
+        PERSON_ID,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="jobStatus != null" >
+        JOB_STATUS,
+      </if>
+      <if test="jobAddress != null" >
+        JOB_ADDRESS,
+      </if>
+      <if test="jobTrade != null" >
+        JOB_TRADE,
+      </if>
+      <if test="salary != null" >
+        SALARY,
+      </if>
+      <if test="jobNature != null" >
+        JOB_NATURE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="personId != null" >
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatus != null" >
+        #{jobStatus,jdbcType=CHAR},
+      </if>
+      <if test="jobAddress != null" >
+        #{jobAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTrade != null" >
+        #{jobTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=INTEGER},
+      </if>
+      <if test="jobNature != null" >
+        #{jobNature,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.myservice.model.Resume" >
+    update resume
+    <set >
+      <if test="personId != null" >
+        PERSON_ID = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="jobStatus != null" >
+        JOB_STATUS = #{jobStatus,jdbcType=CHAR},
+      </if>
+      <if test="jobAddress != null" >
+        JOB_ADDRESS = #{jobAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="jobTrade != null" >
+        JOB_TRADE = #{jobTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        SALARY = #{salary,jdbcType=INTEGER},
+      </if>
+      <if test="jobNature != null" >
+        JOB_NATURE = #{jobNature,jdbcType=CHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.myservice.model.Resume" >
+    update resume
+    set PERSON_ID = #{personId,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      JOB_STATUS = #{jobStatus,jdbcType=CHAR},
+      JOB_ADDRESS = #{jobAddress,jdbcType=VARCHAR},
+      JOB_TRADE = #{jobTrade,jdbcType=VARCHAR},
+      SALARY = #{salary,jdbcType=INTEGER},
+      JOB_NATURE = #{jobNature,jdbcType=CHAR}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>

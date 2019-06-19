@@ -1,0 +1,40 @@
+# LOG4J配置
+lo4j:
+  rootCategory: INFO, stdout, file
+
+# 控制台输出
+  appender:
+    stdout: org.apache.log4j.ConsoleAppender
+      layout: org.apache.log4j.PatternLayout
+        ConversionPattern: %d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - %m%n
+
+# root日志输出到文件
+    file: org.apache.log4j.DailyRollingFileAppender
+      file: /data/logs/springboot-log4j-all.log
+      DatePattern: '.'yyyy-MM-dd
+      layout: org.apache.log4j.PatternLayout
+        ConversionPattern: %d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - %m%n
+
+# com.micai下的日志输出
+    didifile: org.apache.log4j.DailyRollingFileAppender
+      file: /data/logs/springboot-log4j-my.log
+      DatePattern: '.'yyyy-MM-dd
+      layout: org.apache.log4j.PatternLayout
+        ConversionPattern: %d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L ---- %m%n
+# error日志输出
+    errorfile: org.apache.log4j.DailyRollingFileAppender
+      file: /data/logs/springboot-log4j-error.log
+      DatePattern: '.'yyyy-MM-dd
+      Threshold: ERROR
+      layout: org.apache.log4j.PatternLayout
+        ConversionPattern: %d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - %m%n
+
+# ERROR级别输出到特定的日志文件中
+  logger:
+    error: errorfile
+
+# 按不同package进行输出
+# com.micai包下的日志配置
+  category:
+    com:
+      micai: DEBUG, didifile

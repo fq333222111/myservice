@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.myservice.dao.SysLogMapper" >
+  <resultMap id="BaseResultMap" type="com.myservice.model.SysLog" >
+    <id column="GUID" property="guid" jdbcType="VARCHAR" />
+    <result column="TITLE" property="title" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="CHAR" />
+    <result column="CREATE_BY" property="createBy" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_BY" property="updateBy" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="VAILD" property="vaild" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.myservice.model.SysLog" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    GUID, TITLE, TYPE, CREATE_BY, CREATE_TIME, UPDATE_BY, UPDATE_TIME, VAILD
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_log
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_log
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.myservice.model.SysLog" >
+    insert into sys_log (GUID, TITLE, TYPE, 
+      CREATE_BY, CREATE_TIME, UPDATE_BY, 
+      UPDATE_TIME, VAILD, CONTENT
+      )
+    values (#{guid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, 
+      #{createBy,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{vaild,jdbcType=CHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.myservice.model.SysLog" >
+    insert into sys_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        GUID,
+      </if>
+      <if test="title != null" >
+        TITLE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="vaild != null" >
+        VAILD,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="guid != null" >
+        #{guid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vaild != null" >
+        #{vaild,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.myservice.model.SysLog" >
+    update sys_log
+    <set >
+      <if test="title != null" >
+        TITLE = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=CHAR},
+      </if>
+      <if test="createBy != null" >
+        CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="vaild != null" >
+        VAILD = #{vaild,jdbcType=CHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.myservice.model.SysLog" >
+    update sys_log
+    set TITLE = #{title,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=CHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      VAILD = #{vaild,jdbcType=CHAR},
+      CONTENT = #{content,jdbcType=LONGVARCHAR}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.myservice.model.SysLog" >
+    update sys_log
+    set TITLE = #{title,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=CHAR},
+      CREATE_BY = #{createBy,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_BY = #{updateBy,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      VAILD = #{vaild,jdbcType=CHAR}
+    where GUID = #{guid,jdbcType=VARCHAR}
+  </update>
+</mapper>
